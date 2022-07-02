@@ -1,0 +1,21 @@
+.header {
+  grid-area: header;
+  background: #2c3e50;
+
+  height: 60px;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.header .logo-img {
+  max-width: 100%;
+  margin-left: 10px;
+}
+
+.header span {
+  margin-right: 10px;
+  color: aliceblue;
+  font-size: 20px;
+  font-weight: bold;
+}

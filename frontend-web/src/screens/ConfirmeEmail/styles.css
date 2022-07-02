@@ -1,0 +1,26 @@
+.confirm-email {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+  flex-direction: column;
+}
+
+.info {
+  background-color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+}
+
+.confirm-email .icon {
+  font-size: 5rem;
+  margin-bottom: 0;
+}
+
+.confirm-email p {
+  margin-bottom: 0;
+  font-weight: 500;
+  font-size: 1rem;
+}

@@ -1,0 +1,30 @@
+.profile {
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile .form {
+  background-color: #fff;
+  padding: 30px 20px;
+  border-radius: 8px 8px 0 0;
+  border-top: 1px solid #dee2e6;
+  border-left: 1px solid #dee2e6;
+  border-right: 1px solid #dee2e6;
+  display: flex;
+  width: 465px;
+  flex-direction: column;
+}
+
+.profile-buttons {
+  width: 465px;
+  padding: 30px 20px;
+  background-color: #fff;
+  border-radius: 0px 0px 8px 8px;
+  border-top: 1px solid #dee2e6;
+  border-left: 1px solid #dee2e6;
+  border-right: 1px solid #dee2e6;
+  border-bottom: 1px solid #dee2e6;
+}

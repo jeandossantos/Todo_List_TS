@@ -1,0 +1,12 @@
+.account-disabled {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+  flex-direction: column;
+}
+
+.info {
+  background-color: #fff;
+}

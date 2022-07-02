@@ -1,0 +1,28 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+body {
+  background-color: #f8f8ff;
+  width: 100%;
+}
+
+.app {
+  height: 100vh;
+
+  display: grid;
+  grid-template-columns: 1fr 250px;
+  grid-template-rows: 60px 1fr 60px;
+  grid-template-areas:
+    'header menu'
+    'content content'
+    'footer footer';
+}
