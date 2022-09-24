@@ -28,7 +28,6 @@ export class AuthenticateUserUseCase {
 
     const token = sign(payload, process.env.SECRET_OR_KEY, {
       subject: user.id,
-      expiresIn: '1h',
     });
 
     return { ...payload, token };
