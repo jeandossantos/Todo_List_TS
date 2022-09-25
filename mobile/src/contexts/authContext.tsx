@@ -29,21 +29,20 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    async function getStorageData() {
-      const storageData = await AsyncStorage.getItem('@user_payload');
+  async function getStorageData() {
+    const storageData = await AsyncStorage.getItem('@user_payload');
 
-      if (storageData) {
-        setUser(JSON.parse(storageData));
-        axios.defaults.headers.common[
-          'Authorization'
-        ] = `bearer {${user?.token}}`;
-      }
-      setLoading(false);
+    if (storageData) {
+      setUser(JSON.parse(storageData));
+      console.log('User useEffect', user);
+      api.defaults.headers.common['Authorization'] = `Bearer {${user?.token}}`;
     }
+    setLoading(false);
+  }
 
+  useEffect(() => {
     getStorageData();
-  });
+  }, []);
 
   async function login(email: string, password: string) {
     try {
@@ -53,9 +52,10 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
       });
 
       setUser(data);
-      axios.defaults.headers.common[
-        'Authorization'
-      ] = `bearer {${user?.token}}`;
+
+      console.log('Login', data);
+
+      api.defaults.headers.common['Authorization'] = `bearer ${data.token}`;
 
       AsyncStorage.setItem('@user_payload', JSON.stringify(data));
     } catch (error) {
