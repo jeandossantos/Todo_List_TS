@@ -46,15 +46,23 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
   });
 
   async function login(email: string, password: string) {
-    const { data } = await api.post('/login', {
-      email,
-      password,
-    });
+    try {
+      const { data } = await api.post('/login', {
+        email,
+        password,
+      });
 
-    setUser(data);
-    axios.defaults.headers.common['Authorization'] = `bearer {${user?.token}}`;
+      setUser(data);
+      axios.defaults.headers.common[
+        'Authorization'
+      ] = `bearer {${user?.token}}`;
 
-    AsyncStorage.setItem('@user_payload', JSON.stringify(data));
+      AsyncStorage.setItem('@user_payload', JSON.stringify(data));
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        throw error.response?.data;
+      }
+    }
   }
 
   async function logout() {

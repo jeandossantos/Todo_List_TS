@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {
+  Alert,
   Image,
   SafeAreaView,
   Text,
@@ -13,13 +14,24 @@ import { styles } from './styles';
 import logoImg from '../../assets/logo.png';
 import { useAuth } from '../../hooks/useAuth';
 
+interface DataError {
+  message?: string;
+  code?: string;
+}
 export function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { login } = useAuth();
 
   async function handleLogin() {
-    await login(email, password);
+    try {
+      await login(email, password);
+    } catch (error) {
+      const { message } = error as DataError;
+
+      Alert.alert('Mensagem', message);
+      setPassword('');
+    }
   }
 
   return (
