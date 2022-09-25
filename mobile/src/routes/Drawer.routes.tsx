@@ -1,5 +1,6 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { ActivityIndicator, View } from 'react-native';
+import { Loading } from '../components/Loading';
 import { useAuth } from '../hooks/useAuth';
 import { Home } from '../screens/Home';
 import { Login } from '../screens/Login';
@@ -10,11 +11,7 @@ export function DrawerStack() {
   const { signed, loading } = useAuth();
 
   if (loading) {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size={'large'} color={'#ccc'} />
-      </View>
-    );
+    return <Loading />;
   }
 
   return (
