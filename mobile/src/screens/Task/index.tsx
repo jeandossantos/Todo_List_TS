@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Button, FlatList, SafeAreaView, Text, View } from 'react-native';
 import { Background } from '../../components/Background';
+import { TaskCard } from '../../components/TaskCard';
 import { useAuth } from '../../hooks/useAuth';
 import { api } from '../../services/api';
 
@@ -31,7 +32,6 @@ export function Task() {
 
   useEffect(() => {
     api.get<PaginatedTask>('/tasks').then((resp) => {
-      console.log(resp.data.tasks);
       setTasks(resp.data.tasks);
       setCount(resp.data.count);
       setLimit(resp.data.limit);
@@ -41,18 +41,16 @@ export function Task() {
   return (
     <Background>
       <SafeAreaView style={styles.container}>
-        <View>
-          <FlatList
-            data={tasks}
-            keyExtractor={(item) => item.id}
-            renderItem={({ item }) => (
-              <Text style={styles.nameTask} key={item.id}>
-                {item.name}
-              </Text>
-            )}
-          />
-          <Button onPress={logout} title="Sair" />
-        </View>
+        <Text style={styles.title}>Tarefas</Text>
+        <FlatList
+          contentContainerStyle={styles.contentList}
+          data={tasks}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <TaskCard key={item.id} nameTask={item.name} />
+          )}
+        />
+        <Button onPress={logout} title="Sair" />
       </SafeAreaView>
     </Background>
   );
