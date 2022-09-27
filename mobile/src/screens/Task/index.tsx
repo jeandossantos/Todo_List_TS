@@ -15,16 +15,13 @@ interface Task {
   done: boolean;
   createdAt: Date;
 }
-export function Home() {
+export function Task() {
   const [tasks, setTasks] = useState<Task[]>([]);
-  const { logout, user } = useAuth();
+  const { logout } = useAuth();
 
   useEffect(() => {
-    console.log('Home', user?.token);
-
     api.get('/tasks').then((resp) => console.log(resp.data));
   }, []);
-
   return (
     <Background>
       <SafeAreaView style={styles.container}>
