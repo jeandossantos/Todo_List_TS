@@ -34,10 +34,13 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
       const storageData = await AsyncStorage.getItem('@user_payload');
 
       if (storageData) {
-        setUser(JSON.parse(storageData));
-        console.log('User useEffect', storageData);
+        const payload: User = JSON.parse(storageData);
 
-        api.defaults.headers.common['Authorization'] = `Bearer ${user?.token}`;
+        setUser(payload);
+
+        api.defaults.headers.common[
+          'Authorization'
+        ] = `Bearer ${payload?.token}`;
       }
 
       setLoading(false);
